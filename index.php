@@ -33,12 +33,6 @@
 | Database Credentials
 *********************************************/
 
-$servername = "localhost";
-$username = "jaxcode83";
-$password = "Ducks0up";
-$dbname = "jaxcode83";
-
-
 
 
 /*********************************************
@@ -208,19 +202,19 @@ $dbname = "jaxcode83";
                 </form>
             </td>
             </tr>
-        <?
-            }
-        } else {
-            echo "0 results";
-        }
+                <?
+                    }
+                } else {
+                    echo "0 results";
+                }
 
-        mysqli_close($conn);
+                mysqli_close($conn);
 
-        ?>
+            ?>
         </table>
       </div>
 
-<!-- END GUEST LIST -->
+    <!-- END GUEST LIST -->
 
 </body>
 
