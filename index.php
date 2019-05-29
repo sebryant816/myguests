@@ -18,16 +18,15 @@
 </head>
 
 <body>
+    <div class= "container">
+      <div class = "row">
+        <div class = "col-md-12">
 
-        <div class= "container">
-          <div class = "row">
-            <div class = "col-md-12">
+        <h1 class="text-center" style="border:1px solid black;font-size:32px;background-color:#e68a00;color:black;padding: 10px 0px;">My Guests</h1>
 
-            <h1 class="text-center" style="border:1px solid black;font-size:32px;background-color:#e68a00;color:black;padding: 10px 0px;">My Guests</h1>
+        <br>
 
-            <br>
-
-            <?php
+        <?php
 
 /*********************************************
 | Database Credentials
@@ -41,26 +40,25 @@
           
         if (isset($_POST["addguest"])) {
 
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-        if (!$conn) {
-          die("Connection failed: " . mysqli_connect_error());
-        }
+            if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+            }
 
-        $sql = "INSERT INTO myguests (firstname, lastname, email) VALUES ('{$_POST['firstname']}','{$_POST['lastname']}','{$_POST['email']}')";
+            $sql = "INSERT INTO myguests (firstname, lastname, email) VALUES ('{$_POST['firstname']}','{$_POST['lastname']}','{$_POST['email']}')";
 
-          if(mysqli_query($conn, $sql)){
-          echo '<div class="alert alert-success">
-          <strong>Success!</strong> Guest Added.
-        </div>';
-          } else {
-          echo "Error:" .$sql. "<br>" .mysqli_error($conn);
-          }
+         if(mysqli_query($conn, $sql)){
+              echo '<div class="alert alert-success">
+              <strong>Success!</strong> Guest Added.
+            </div>';
+              } else {
+              echo "Error:" .$sql. "<br>" .mysqli_error($conn);
+              }
 
-        mysqli_close($conn);
-        }
+            mysqli_close($conn);
+            }
         // end
-
 
 
 /*********************************************
@@ -70,27 +68,25 @@
         if (isset($_POST["updateguest"])) {
 
         // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            // Check connection
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
 
-        $sql = "UPDATE myguests SET firstname='{$_POST['firstname']}', lastname='{$_POST['lastname']}', email='{$_POST['email']}' WHERE id='{$_POST['id']}'";
+            $sql = "UPDATE myguests SET firstname='{$_POST['firstname']}', lastname='{$_POST['lastname']}', email='{$_POST['email']}' WHERE id='{$_POST['id']}'";
 
-        if (mysqli_query($conn, $sql)) {
-            echo '<div class="alert alert-info">
-          <strong>Success!</strong> Guest Updated.
-        </div>';
-        } else {
-            echo "Error updating record: " . mysqli_error($conn);
-        }
+            if (mysqli_query($conn, $sql)) {
+                echo '<div class="alert alert-info">
+              <strong>Success!</strong> Guest Updated.
+            </div>';
+            } else {
+                echo "Error updating record: " . mysqli_error($conn);
+            }
 
-        mysqli_close($conn);
+            mysqli_close($conn);
 
-        }
-
-
+            }
 
 /*********************************************
 | DELETE a Guest  
@@ -98,28 +94,27 @@
           
         if(isset($_POST['delete'])) {
 
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
 
         if (!$conn) {
-          die("Connection failed: " . mysqli_connect_error());
-        }
+              die("Connection failed: " . mysqli_connect_error());
+            }
 
-        $sql = "DELETE FROM myguests WHERE id='{$_POST['id']}'";
+            $sql = "DELETE FROM myguests WHERE id='{$_POST['id']}'";
 
           if (mysqli_query($conn, $sql)) {
-          echo '<div class="alert alert-warning">
-          <strong>Warning!</strong> Guest Deleted.
-        </div>';
-          } else {
-          echo "Error deleting record: " . mysqli_error($conn);
-          }
+              echo '<div class="alert alert-warning">
+              <strong>Warning!</strong> Guest Deleted.
+            </div>';
+              } else {
+              echo "Error deleting record: " . mysqli_error($conn);
+              }
 
-        mysqli_close($conn);
-        }
-        // end
+            mysqli_close($conn);
+            }
+            // end
 
-        ?>
-
+            ?>
 
 <!-- ADD GUEST FORM -->
 
@@ -138,13 +133,14 @@
           </div>
 
         <? if(isset($_POST['edit'])) { ?>
-        <input type="hidden" name="id" value="<?=$_POST['id']?>">
-        <button type="submit" name="updateguest" class="btn btn-default">Update Guest</button>
+            <input type="hidden" name="id" value="<?=$_POST['id']?>">
+            <button type="submit" name="updateguest" class="btn btn-default">Update Guest</button>
 
-        <? } else { ?>
-          <button type="submit" name="addguest" class="btn btn-default">Add Guest</button>
-        <? } ?>
+            <? } else { ?>
+              <button type="submit" name="addguest" class="btn btn-default">Add Guest</button>
+            <? } ?>
         </form>
+            
 <!-- END ADD GUEST FORM -->
 
         <br><br>
@@ -170,15 +166,15 @@
 
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
-        }
+             }
 
-        $sql = "SELECT * FROM myguests ORDER BY lastname";
-        $result = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM myguests ORDER BY lastname";
+            $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-        ?>
+            ?>
             <tr>
             <td><?=$row['firstname']?></td>
             <td><?=$row['lastname']?></td>
@@ -209,8 +205,7 @@
                 }
 
                 mysqli_close($conn);
-
-            ?>
+                ?>
         </table>
       </div>
 
